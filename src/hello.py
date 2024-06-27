@@ -1,5 +1,5 @@
-import datetime
+from datetime import date
 
-today = datetime.date.today()
+today = date.today()
 
 print("Hello world. Today's date is ", today)
