@@ -1,0 +1,6 @@
+.vscode
+.benchmarks
+.pytest_cache
+
+test/.pytest_cache
+*.pyc
