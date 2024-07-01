@@ -1,0 +1,24 @@
+# pyproject.toml
+
+# minimal python build configuration
+
+[build-system]
+requires = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+ 
+[project]
+name = "ghatesting-so"
+version = "0.0.1"
+description = "GitHub Actions Tester"
+readme = "README.md"
+authors = [{ name = "Stephen Oman", email = "stephen.oman@yahoo.co.uk" }]
+license = { file = "LICENSE" }
+classifiers = [
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+]
+keywords = ["test", "github actions"]
+requires-python = ">=3.8"
+ 
+[project.urls]
+Homepage = "https://github.com/StephenOman/ghatesting"
