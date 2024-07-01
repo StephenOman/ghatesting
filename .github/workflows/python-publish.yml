@@ -17,27 +17,22 @@ permissions:
 
 jobs:
   deploy:
-
+    name: Deploy to testpypi
     runs-on: ubuntu-latest
-
+    environment:
+      name: prerelease
+      url: https://testpypi.org/p/ghatesting-so
+    permissions:
+      id-token: write
     steps:
     - uses: actions/checkout@v4
-    - name: Set up Python
-      uses: actions/setup-python@v5
+    - name: Get sdist artefacts
+      uses: actions/download-artifact@v4
       with:
-        python-version: '3.10'
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install build pytest
-    - name: Run some tests
-      run: |
-        pytest
- 
-    # - name: Build package
-    #   run: python -m build
-    # - name: Publish package
-    #   uses: pypa/gh-action-pypi-publish@27b31702a0e7fc50959f5ad993c78deac1bdfc29
-    #   with:
-    #     user: __token__
-    #     password: ${{ secrets.PYPI_API_TOKEN }}
+        name: python-sdist
+        path: dist
+        
+    - name: Publish package
+      uses: pypa/gh-action-pypi-publish@release/v1
+      with:
+        repository-url: https://test.pypi.org/
