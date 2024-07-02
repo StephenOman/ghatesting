@@ -16,7 +16,35 @@ permissions:
   contents: read
 
 jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python 3.8
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.8"
+    
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install flake8 pytest build wheel
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+    - name: Build distribution package
+      run : |
+        python -m build
+
+    - name: Upload artefacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: python-package
+        path: dist/
+
   deploy:
+    needs: [build]
     name: Deploy to testpypi
     runs-on: ubuntu-latest
     environment:
@@ -24,8 +52,9 @@ jobs:
       url: https://testpypi.org/p/ghatesting-so
     permissions:
       id-token: write
+
     steps:
-    - name: Get sdist artefacts
+    - name: Get dist artefacts
       uses: actions/download-artifact@v4
       with:
         name: python-package
