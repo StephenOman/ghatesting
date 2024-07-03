@@ -8,7 +8,7 @@ build-backend = "setuptools.build_meta"
  
 [project]
 name = "ghatesting-so"
-version = "0.0.1-rc4"
+version = "0.0.1-rc5"
 description = "GitHub Actions Tester"
 readme = "README.md"
 authors = [{ name = "Stephen Oman", email = "stephen.oman@yahoo.co.uk" }]
