@@ -1,5 +1,9 @@
 from datetime import date
 
-today = date.today()
+def get_message():
+    today = date.today().strftime('%d/%m/%Y')
+    message = "Hello world. Today's date is "
+    return message + today
 
-print("Hello world. Today's date is ", today)
+if __name__ == '__main__':
+    print(get_message())
