@@ -4,3 +4,7 @@
 
 test/.pytest_cache
 *.pyc
+
+*.egg-info
+*.tar.gz
+*.whl
